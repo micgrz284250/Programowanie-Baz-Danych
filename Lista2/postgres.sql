@@ -37,8 +37,8 @@ SELECT
     position('L' IN pseudo) AS l,
     replace(replace(pseudo, 'L', '%'), 'A', '#') AS "po_wymianie_a_na_#_oraz_l_na_%"
 FROM kocury
-WHERE POSITION('A' IN pseudo) > 0
-  AND POSITION('L' IN pseudo) > 0;
+WHERE position('A' IN pseudo) > 0
+  AND position('L' IN pseudo) > 0;
 
 -- zadanie 6
 SELECT
