@@ -97,3 +97,41 @@ SELECT
 FROM wrogowie_kocurow
 GROUP BY pseudo
 HAVING count(*) >= 2;
+
+-- zadanie 11
+SELECT
+    pseudo AS psuedo,
+    w_stadku_od AS w_stadku,
+    CASE
+        WHEN extract(day from w_stadku_od) BETWEEN 1 AND 15 THEN DATE '2024-10-30'
+        ELSE DATE '2024-11-27'
+    END AS wyplata
+FROM kocury
+ORDER BY w_stadku;
+
+SELECT
+    pseudo AS psuedo,
+    w_stadku_od AS w_stadku,
+    CASE
+        WHEN extract(day from w_stadku_od) BETWEEN 1 AND 15 THEN DATE '2024-11-27'
+        ELSE DATE '2024-11-27'
+    END AS wyplata
+FROM kocury
+ORDER BY w_stadku;
+
+-- zadanie 12
+SELECT
+    'Liczba kotow= ' || count(*) || ' lowi jako ' || funkcja || ' i zjada max. ' || max(przydzial_myszy + coalesce(myszy_extra, 0)) || ' myszy miesieczne'
+FROM kocury
+WHERE imie != 'SZEFUNCIO'
+AND plec != 'M'
+AND funkcja != 'KOT'
+GROUP BY funkcja;
+
+-- zadanie 13
+SELECT
+    nr_bandy AS nr_bandy,
+    plec AS plec,
+    min(przydzial_myszy) AS minimalny_przydzial
+FROM kocury
+GROUP BY nr_bandy, plec;
