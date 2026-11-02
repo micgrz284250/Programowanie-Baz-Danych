@@ -9,7 +9,8 @@ VALUES
     ('DZIELCZY',45,55),
     ('HONOROWA',6,25);
 
-ALTER TABLE KOCURY NOCHECK CONSTRAINT ALL;
+ALTER TABLE Kocury DROP CONSTRAINT kocury_nr_bandy_fk;
+ALTER TABLE Kocury DROP CONSTRAINT kocury_szef_fk;
 
 INSERT INTO Kocury(imie,plec,pseudo,funkcja,szef,w_stadku_od,przydzial_myszy,myszy_extra,nr_bandy)
 VALUES
@@ -40,7 +41,8 @@ VALUES
     (4,'LACIACI MYSLIWI','GORKA','RAFA'),
     (5,'ROCKERSI','ZAGRODA',NULL);
 
-ALTER TABLE KOCURY CHECK CONSTRAINT ALL;
+ALTER TABLE Kocury ADD CONSTRAINT kocury_nr_bandy_fk FOREIGN KEY (nr_bandy) REFERENCES Bandy(nr_bandy);
+ALTER TABLE Kocury ADD CONSTRAINT kocury_szef_fk FOREIGN KEY (szef) REFERENCES Kocury(pseudo);
 
 INSERT INTO Wrogowie(imie_wroga,stopien_wrogosci,gatunek,lapowka)
 VALUES

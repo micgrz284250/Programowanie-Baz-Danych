@@ -25,7 +25,7 @@ CREATE TABLE Kocury (
     pseudo VARCHAR(15) CONSTRAINT kocury_pk PRIMARY KEY,
     funkcja VARCHAR(10) CONSTRAINT kocury_funkcja_fk REFERENCES Funkcje(funkcja),
     szef VARCHAR(15) CONSTRAINT kocury_szef_fk REFERENCES Kocury(pseudo),
-    w_stadku_od DATE DEFAULT CURRENT_DATE,
+    w_stadku_od DATE DEFAULT current_date,
     przydzial_myszy NUMERIC(3),
     myszy_extra NUMERIC(3),
     nr_bandy NUMERIC(2) CONSTRAINT kocury_nr_bandy_fk REFERENCES Bandy(nr_bandy)
