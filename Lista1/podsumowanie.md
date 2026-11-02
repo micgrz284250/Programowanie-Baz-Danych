@@ -16,16 +16,13 @@ Jako że istnieje wspólna zależność między tabelą Kocury a Bandy niemożli
 - SYSDATE należało zastąpić SYSDATETIME()
 
 # Zadanie 2
-### 1. Oracle.  
 Wzajemna zależność między tabelą Kocury a Bandy wymagała wyłączenia ograniczenia klucza obcego komendą:
 ```sql
-ALTER TABLE KOCURY DISABLE CONSTRAINT KOCURY_NR_BANDY_FK;
-ALTER TABLE KOCURY DISABLE CONSTRAINT KOCURY_SZEF_FK;
+ALTER TABLE KOCURY DROP CONSTRAINT KOCURY_NR_BANDY_FK;
+ALTER TABLE KOCURY DROP CONSTRAINT KOCURY_SZEF_FK;
 ```
 I włączenia ponownie po wypełnieniu bazy danych komendą:
 ```sql
-ALTER TABLE KOCURY ENABLE CONSTRAINT KOCURY_NR_BANDY_FK;
-ALTER TABLE KOCURY ENABLE CONSTRAINT KOCURY_SZEF_FK;
+ALTER TABLE KOCURY ADD CONSTRAINT kocury_nr_bandy_fk FOREIGN KEY (NR_BANDY) REFERENCES BANDY(NR_BANDY);
+ALTER TABLE KOCURY ADD CONSTRAINT kocury_szef_fk FOREIGN KEY (SZEF) REFERENCES KOCURY(PSEUDO);
 ```
-
-### 2. Postgres.  
