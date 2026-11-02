@@ -8,7 +8,7 @@ WHERE extract(year from data_incydentu) = 2009;
 -- zadanie 2
 SELECT
     imie AS imie,
-    funkcja AS funckja,
+    funkcja AS funkcja,
     w_stadku_od AS z_nami_od
 FROM kocury
 WHERE plec = 'D'
@@ -123,10 +123,10 @@ ORDER BY w_stadku;
 SELECT
     'Liczba kotow= ' || count(*) || ' lowi jako ' || funkcja || ' i zjada max. ' || max(przydzial_myszy + coalesce(myszy_extra, 0)) || ' myszy miesieczne'
 FROM kocury
-WHERE imie != 'SZEFUNCIO'
-AND plec != 'M'
-AND funkcja != 'KOT'
-GROUP BY funkcja;
+WHERE funkcja != 'SZEFUNIO'
+  AND plec != 'M'
+GROUP BY funkcja
+HAVING avg(przydzial_myszy + coalesce(myszy_extra, 0)) > 50;
 
 -- zadanie 13
 SELECT
