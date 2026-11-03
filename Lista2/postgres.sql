@@ -121,7 +121,7 @@ ORDER BY w_stadku;
 
 -- zadanie 12
 SELECT
-    'Liczba kotow= ' || count(*) || ' lowi jako ' || funkcja || ' i zjada max. ' || max(przydzial_myszy + coalesce(myszy_extra, 0)) || ' myszy miesieczne'
+    'Liczba kotow= ' || count(*) || ' lowi jako ' || funkcja || ' i zjada max. ' || max(przydzial_myszy + coalesce(myszy_extra, 0)) || ' myszy miesieczne' AS spis_funkcji
 FROM kocury
 WHERE funkcja != 'SZEFUNIO'
   AND plec != 'M'
