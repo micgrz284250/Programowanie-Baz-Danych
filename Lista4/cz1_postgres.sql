@@ -22,12 +22,24 @@ WHERE funkcja != 'SZEFUNIO'
 GROUP BY funkcja, plec
 ORDER BY funkcja, plec;
 
--- zadanie 3 TODO
+-- zadanie 3
+-- z zabezpieczeniem
 SELECT
     funkcje.funkcja AS funkcja,
-    count(pseudo) AS koty,
+    count(kocury.funkcja) AS koty,
     coalesce(sum(przydzial_myszy + coalesce(myszy_extra, 0)), 0) AS razem,
-    sum(przydzial_myszy + coalesce(myszy_extra, 0)) / count(*) AS srednia
+    coalesce(sum(przydzial_myszy + coalesce(myszy_extra, 0)), 0) / nullif(count(kocury.funkcja), 0) AS srednia
+FROM funkcje
+LEFT JOIN kocury ON funkcje.funkcja = kocury.funkcja
+GROUP BY funkcje.funkcja
+ORDER BY funkcje.funkcja;
+
+-- bez zabezpieczenia
+SELECT
+    funkcje.funkcja AS funkcja,
+    count(kocury.funkcja) AS koty,
+    coalesce(sum(przydzial_myszy + coalesce(myszy_extra, 0)), 0) AS razem,
+    coalesce(sum(przydzial_myszy + coalesce(myszy_extra, 0)), 0) / count(kocury.funkcja) AS srednia
 FROM funkcje
 LEFT JOIN kocury ON funkcje.funkcja = kocury.funkcja
 GROUP BY funkcje.funkcja
