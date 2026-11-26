@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS koty;
+
+CREATE DATABASE koty;
+
 CREATE TABLE Bandy (
     nr_bandy NUMERIC(2) CONSTRAINT bandy_pk PRIMARY KEY,
     nazwa VARCHAR(20) CONSTRAINT bandy_nazwa_nn NOT NULL,
